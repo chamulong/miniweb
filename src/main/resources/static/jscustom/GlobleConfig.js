@@ -45,6 +45,9 @@ require.config({
         bootstraptableCN:{
             deps:['jquery','bootstrap','bootstraptable']
         },
+        layer:{
+            deps:['jquery']
+        },
         jqueryform:{
             deps:['jquery']
         },
@@ -52,7 +55,7 @@ require.config({
             deps:['jquery','css!/jslib/jQuery.upload/upload.css']
         },
         ztree:{
-            deps:['jquery']
+            deps:['jquery','css!/jslib/zTree_v3/css/zTreeStyle/img/zTreeStyle.css']
         },
         validator:{
             deps:['jquery','bootstrap','css!/jslib/bootstrapvalidator.0.5.3/bootstrapValidator.css']

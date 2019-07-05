@@ -18,7 +18,7 @@ require.config({
     },
     map:{
         '*':{
-            css:['https://cdn.bootcss.com/require.js/2.3.6/require.min.js','/jslib/require2.3.6/css.min.js']}
+            css:['/jslib/require2.3.6/css.min.js']}
     },
     shim:{
         bootstrap:{

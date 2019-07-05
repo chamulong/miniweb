@@ -16,6 +16,10 @@ require.config({
         ztree:['/jslib/zTree_v3/js/jquery.ztree.all'],
         validator:['/jslib/bootstrapvalidator.0.5.3/js/bootstrapValidator.min']
     },
+    map:{
+        '*':{
+            css:['https://cdn.bootcss.com/require.js/2.3.6/require.min.js','/jslib/require2.3.6/css.min.js']}
+    },
     shim:{
         bootstrap:{
             deps:['jquery','css!/jslib/Hplus-v.4.1.0/css/bootstrap.min.css','css!/jslib/Hplus-v.4.1.0/css/font-awesome.min.css','css!/jslib/Hplus-v.4.1.0/css/animate.css','css!/jslib/Hplus-v.4.1.0/css/style.css']
@@ -56,9 +60,5 @@ require.config({
         validator:{
             deps:['jquery','bootstrap','css!/jslib/bootstrapvalidator.0.5.3/bootstrapValidator.css']
         }
-    },
-    map:{
-        '*':{
-            css:'/jslib/require2.3.6/css.min.js'}
     }
 })

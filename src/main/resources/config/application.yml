@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev #默认启用的配置文件，不用写配置文件的全称，写短线后的名称就行了
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+
+
+
+

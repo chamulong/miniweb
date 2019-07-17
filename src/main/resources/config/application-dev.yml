@@ -1,0 +1,17 @@
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+    com.jcj.miniweb: INFO
+  file: logs/system.log
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/miniweb?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: root
+
+
+
+

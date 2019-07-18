@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name="company")
 public class Company {
     @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(length = 32)
     private String uuid;
 

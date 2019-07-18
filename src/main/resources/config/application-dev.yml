@@ -2,9 +2,9 @@ server:
   port: 8080
 logging:
   level:
-    root: INFO
-    com.jcj.miniweb: INFO
-  file: logs/system.log
+    root: INFO #系统的日志级别
+    com.jcj.miniweb: INFO #项目对应的日志级别
+  file: logs/system.log #默认向控制台输出，这里设置为在向控制台输出的同时，写入指定路径的日志文件文件中
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver

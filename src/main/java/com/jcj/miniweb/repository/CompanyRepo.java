@@ -4,6 +4,7 @@ import com.jcj.miniweb.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @Date：Create on  2019/7/18 23:00
  * @Description：数据仓库类：公司
  */
+@Repository
 public interface CompanyRepo extends JpaRepository<Company,Long>
 {
 	//原生sql语句查询

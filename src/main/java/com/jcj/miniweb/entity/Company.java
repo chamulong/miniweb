@@ -1,6 +1,7 @@
 package com.jcj.miniweb.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,129 +13,140 @@ import javax.persistence.Table;
  * @Description: 公司实体
  */
 @Entity
-@Table(name="company")
+@Table(name = "company")
 public class Company {
-    @Id
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(length = 32)
-    private String uuid;
+  @Id
+  @GenericGenerator(name = "uuid", strategy = "uuid")
+  @Column(length = 32)
+  private String uuid;
 
-    @Column(length = 60)
-    private String cname;
+  @Column(length = 60)
+  private String cname;
 
-    @Column(length = 120)
-    private String caddress;
+  @Column(length = 120)
+  private String caddress;
 
 
-    @Column(length = 120)
-    private String curl;
+  @Column(length = 120)
+  private String curl;
 
-    @Column(length = 60)
-    private String cemail;
+  @Column(length = 60)
+  private String cemail;
 
-    @Column
-    private int cpersonnum;
+  @Column
+  private int cpersonnum;
 
-    @Column(columnDefinition = "double(10,4) default '0.00'")
-    private float totalincome;
+  @Column(columnDefinition = "double(10,4) default '0.00'")
+  private float totalincome;
 
-    @Column(length = 10)
-    private String legalpersonname;
+  @Column(length = 10)
+  private String legalpersonname;
 
-    @Column(columnDefinition = "char(11)")
-    private String legalpersonmobil;
+  @Column(columnDefinition = "char(11)")
+  private String legalpersonmobil;
 
-    @Column(length = 120)
-    private String businesslicense;
+  @Column(length = 120)
+  private String businesslicense;
 
-    @Column(columnDefinition = "text")
-    private String cbrief;
+  @Column(columnDefinition = "text")
+  private String cbrief;
 
-    public String getUuid() {
-        return uuid;
-    }
+  @Column(columnDefinition = "char(19)")
+  private String createtime;
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+  public String getUuid() {
+    return uuid;
+  }
 
-    public String getCname() {
-        return cname;
-    }
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
 
-    public void setCname(String cname) {
-        this.cname = cname;
-    }
+  public String getCname() {
+    return cname;
+  }
 
-    public String getCaddress() {
-        return caddress;
-    }
+  public void setCname(String cname) {
+    this.cname = cname;
+  }
 
-    public void setCaddress(String caddress) {
-        this.caddress = caddress;
-    }
+  public String getCaddress() {
+    return caddress;
+  }
 
-    public String getCurl() {
-        return curl;
-    }
+  public void setCaddress(String caddress) {
+    this.caddress = caddress;
+  }
 
-    public void setCurl(String curl) {
-        this.curl = curl;
-    }
+  public String getCurl() {
+    return curl;
+  }
 
-    public String getCemail() {
-        return cemail;
-    }
+  public void setCurl(String curl) {
+    this.curl = curl;
+  }
 
-    public void setCemail(String cemail) {
-        this.cemail = cemail;
-    }
+  public String getCemail() {
+    return cemail;
+  }
 
-    public int getCpersonnum() {
-        return cpersonnum;
-    }
+  public void setCemail(String cemail) {
+    this.cemail = cemail;
+  }
 
-    public void setCpersonnum(int cpersonnum) {
-        this.cpersonnum = cpersonnum;
-    }
+  public int getCpersonnum() {
+    return cpersonnum;
+  }
 
-    public float getTotalincome() {
-        return totalincome;
-    }
+  public void setCpersonnum(int cpersonnum) {
+    this.cpersonnum = cpersonnum;
+  }
 
-    public void setTotalincome(float totalincome) {
-        this.totalincome = totalincome;
-    }
+  public float getTotalincome() {
+    return totalincome;
+  }
 
-    public String getLegalpersonname() {
-        return legalpersonname;
-    }
+  public void setTotalincome(float totalincome) {
+    this.totalincome = totalincome;
+  }
 
-    public void setLegalpersonname(String legalpersonname) {
-        this.legalpersonname = legalpersonname;
-    }
+  public String getLegalpersonname() {
+    return legalpersonname;
+  }
 
-    public String getLegalpersonmobil() {
-        return legalpersonmobil;
-    }
+  public void setLegalpersonname(String legalpersonname) {
+    this.legalpersonname = legalpersonname;
+  }
 
-    public void setLegalpersonmobil(String legalpersonmobil) {
-        this.legalpersonmobil = legalpersonmobil;
-    }
+  public String getLegalpersonmobil() {
+    return legalpersonmobil;
+  }
 
-    public String getBusinesslicense() {
-        return businesslicense;
-    }
+  public void setLegalpersonmobil(String legalpersonmobil) {
+    this.legalpersonmobil = legalpersonmobil;
+  }
 
-    public void setBusinesslicense(String businesslicense) {
-        this.businesslicense = businesslicense;
-    }
+  public String getBusinesslicense() {
+    return businesslicense;
+  }
 
-    public String getCbrief() {
-        return cbrief;
-    }
+  public void setBusinesslicense(String businesslicense) {
+    this.businesslicense = businesslicense;
+  }
 
-    public void setCbrief(String cbrief) {
-        this.cbrief = cbrief;
-    }
+  public String getCbrief() {
+    return cbrief;
+  }
+
+  public void setCbrief(String cbrief) {
+    this.cbrief = cbrief;
+  }
+
+  public String getCreatetime() {
+    return createtime;
+  }
+
+  public void setCreatetime(String createtime) {
+    this.createtime = createtime;
+  }
 }

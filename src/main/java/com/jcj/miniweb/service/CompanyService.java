@@ -19,6 +19,25 @@ public class CompanyService
   @Autowired
   private CompanyRepo companyRepo;//注入数据仓库层的接口
 
+  //保存或更新数据
+  public void save(Company company)
+  {
+    companyRepo.save(company);
+  }
+
+  //删除数据
+  public void delete(Company company)
+  {
+    companyRepo.delete(company);
+  }
+
+  //基于主键删除数据
+  @Transactional
+  public void delete(String uuid)
+  {
+    companyRepo.deleteByUuid(uuid);
+  }
+
   //查询全部数据
   public List<Company> findAll()
   {

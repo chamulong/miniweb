@@ -5,10 +5,10 @@ import com.jcj.miniweb.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,12 +23,39 @@ public class CompanyCtl
   @Autowired
   private CompanyService companyService;
 
+  /*****************************************************
+   * 传统做法,非Restful设计风格
+   ****************************************************/
+  @RequestMapping("/showIndex")
+  public String showIndex()
+  {
+    //注意，这里面的跳转页面有别于Thymeleaf模板，这是普通跳转（放在public文件夹下），需要redirect修饰，并且带后缀文件名，Thymeleaf不需要
+    //资源文件中，resources、static、public这三个文件夹可以直接访问，而templates文件夹是安全文件夹，不能直接访问
+    return "redirect:/index.html";
+  }
+
   @RequestMapping("/findAll")
   @ResponseBody
   public List<Company> findAll()
   {
     //查询全部数据（利用JpaRepository已封装的方法）
     return companyService.findAll();
+  }
+
+  @RequestMapping("/save")
+  @ResponseBody
+  public void save(Company company)
+  {
+    //保存或更新数据（利用JpaRepository已封装的方法）
+    companyService.save(company);
+  }
+
+  @RequestMapping("/delete")
+  @ResponseBody
+  public void delete(Company company)
+  {
+    //删除数据（利用JpaRepository已封装的方法）
+    companyService.delete(company);
   }
 
   @RequestMapping("/findByNativeSQL")
@@ -62,6 +89,54 @@ public class CompanyCtl
     //解析方法名的多条件查询（Spring Data JPA框架）
     return companyService.findByCnameAndLegalpersonname(cname,legalpersonname);
   }
+
+  /*****************************************************
+   * Restful设计风格
+   ****************************************************/
+  @RequestMapping(value="/company",method = RequestMethod.GET)
+  @ResponseBody
+  public List<Company> listCompany()
+  {
+    //GET方式，查询数据列表
+    return companyService.findAll();
+  }
+
+  @RequestMapping(value="/company",method = RequestMethod.POST)
+  @ResponseBody
+  public void saveCompany()
+  {
+    //POST方式，保存数据
+   Company company=new Company();
+    company.setUuid("u1111111111111111111111111111111");
+    company.setCname("深圳腾讯");
+    company.setCaddress("深圳创业大道一号");
+    company.setCurl("http://www.qq.com");
+    company.setCemail("12345@qq.com");
+    company.setCpersonnum(30000);
+    company.setTotalincome(5000.0000f);
+    company.setLegalpersonname("马化腾");
+    company.setLegalpersonmobil("13911111111");
+    company.setBusinesslicense("lince111111");
+    company.setCbrief("深圳市腾讯计算机系统有限公司成立于1998年11月 [1]  ，由马化腾、张志东、许晨晔、陈一丹、曾李青五位创始人共同创立");
+    Date d = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    company.setCreatetime(sdf.format(d));
+    companyService.save(company);
+  }
+
+  @RequestMapping(value="/company/{uuid}",method = RequestMethod.DELETE)
+  @ResponseBody
+  public void deleteCompany(@PathVariable String uuid)
+  {
+    //POST方式，删除数据
+    companyService.delete(uuid);
+  }
+
+
+
+
+
+
 
 
 

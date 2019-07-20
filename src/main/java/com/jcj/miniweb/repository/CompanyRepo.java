@@ -30,4 +30,9 @@ public interface CompanyRepo extends JpaRepository<Company,Long>
 
 	//通过解析方法名创建查询
 	Company findByCnameAndLegalpersonname(String companyname,String legalpersonname);
+
+	//原生sql语句删除记录
+	@Modifying
+	@Query(value = "delete from company where uuid=?1",nativeQuery = true)
+	void deleteByUuid(String uuid);
 }

@@ -1,8 +1,12 @@
 package com.jcj.miniweb.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jcj.miniweb.entity.Company;
 import com.jcj.miniweb.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -131,6 +135,28 @@ public class CompanyCtl
     //POST方式，删除数据
     companyService.delete(uuid);
   }
+
+  @GetMapping("/findAllSimplePage")
+  @ResponseBody
+  public String findAllSimplePage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size)
+  {
+    /**
+    *@Author 江成军
+    *@Description 简单分页查询
+    *@Date 2019/09/29 16:35
+    **/
+    Sort sort=new Sort(Sort.Direction.DESC,"cname");//按照公司名称排序
+    Page<Company> pageinfo=companyService.findAllSimplePage(PageRequest.of(page,size,sort));
+    List<Company> companies =pageinfo.getContent();
+    JSONObject result = new JSONObject();//maven中配置alibaba的fastjson依赖
+
+    //"rows"和"total"这两个属性是为前端列表插件"bootstrap-table"服务的
+    result.put("rows", companies);
+    result.put("total",pageinfo.getTotalElements());
+    return result.toJSONString();
+  }
+
+
 
 
 

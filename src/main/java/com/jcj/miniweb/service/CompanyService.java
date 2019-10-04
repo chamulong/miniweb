@@ -3,6 +3,8 @@ package com.jcj.miniweb.service;
 import com.jcj.miniweb.entity.Company;
 import com.jcj.miniweb.repository.CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -67,6 +69,12 @@ public class CompanyService
   public Company findByCnameAndLegalpersonname(String companyname, String legalpersonname)
   {
     return companyRepo.findByCnameAndLegalpersonname(companyname, legalpersonname);
+  }
+
+  //简单分页查询
+  public Page<Company> findAllSimplePage(Pageable pageable)
+  {
+    return companyRepo.findAll(pageable);
   }
 
 }

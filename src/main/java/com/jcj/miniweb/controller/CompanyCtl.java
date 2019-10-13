@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author： 江成军
@@ -136,16 +137,23 @@ public class CompanyCtl
     companyService.delete(uuid);
   }
 
-  @GetMapping("/findAllSimplePage")
+
+  @PostMapping("/findAllSimplePage")
   @ResponseBody
-  public String findAllSimplePage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size)
+  public String findAllSimplePage(@RequestBody Map<String,Object> reqMap)
   {
     /**
     *@Author 江成军
     *@Description 简单分页查询
     *@Date 2019/09/29 16:35
     **/
-    Sort sort=new Sort(Sort.Direction.DESC,"cname");//按照公司名称排序
+    //固定不变的两个分页参数
+    int page=0;
+    if(reqMap.get("page").toString()!=null){page= Integer.parseInt(reqMap.get("page").toString());}
+    int size=2;
+    if(reqMap.get("size").toString()!=null){size= Integer.parseInt(reqMap.get("size").toString());}
+
+    Sort sort=new Sort(Sort.Direction.DESC,"uuid");//按照UUID排序
     Page<Company> pageinfo=companyService.findAllSimplePage(PageRequest.of(page,size,sort));
     List<Company> companies =pageinfo.getContent();
     JSONObject result = new JSONObject();//maven中配置alibaba的fastjson依赖
@@ -154,6 +162,13 @@ public class CompanyCtl
     result.put("rows", companies);
     result.put("total",pageinfo.getTotalElements());
     return result.toJSONString();
+  }
+
+  //指定客户列表页面,由于默认不能直接访问templates文件夹下的页面，所以通过跳转的方式进行访问
+  @RequestMapping(value = "/listcompanyhtml")
+  public String listcompanyhtml()
+  {
+    return "/ListCompany";//对应的是页面文件("templates"文件夹下的ListCompany.html文件)
   }
 
 

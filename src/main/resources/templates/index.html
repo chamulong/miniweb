@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.html"><i class="fa fa fa-list-alt"></i> 客户列表</a>
+                                <a class="J_menuItem" th:href="@{/company/listcompanyhtml}"><i class="fa fa fa-list-alt"></i> 客户列表</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="graph_flot.html"><i class="fa fa fa-map-o"></i> 客户统计</a>

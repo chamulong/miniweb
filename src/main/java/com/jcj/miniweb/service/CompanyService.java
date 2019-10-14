@@ -5,10 +5,17 @@ import com.jcj.miniweb.repository.CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author： 江成军
@@ -75,6 +82,29 @@ public class CompanyService
   public Page<Company> findAllSimplePage(Pageable pageable)
   {
     return companyRepo.findAll(pageable);
+  }
+
+  //带查询条件的分页查询
+  public Page<Company> queryDynamic(Map<String,Object> reqMap, Pageable pageable)
+  {
+    Specification querySpecifi=new Specification<Company>()
+    {
+      @Override
+      public Predicate toPredicate(Root<Company> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder)
+      {
+        List<Predicate> predicates = new ArrayList<>();
+        if(!reqMap.get("cname").toString().equals(""))//公司名称，like 模糊查询
+        {
+          predicates.add(criteriaBuilder.like(root.get("cname"),"%"+reqMap.get("cname").toString()+"%"));
+        }
+        if(!reqMap.get("legalpersonname").toString().equals(""))//法人姓名，精确查询
+        {
+          predicates.add(criteriaBuilder.equal(root.get("legalpersonname"),reqMap.get("legalpersonname").toString()));
+        }
+        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+      }
+    };
+    return this.companyRepo.findAll(querySpecifi,pageable);
   }
 
 }

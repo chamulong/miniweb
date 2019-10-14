@@ -2,6 +2,7 @@ package com.jcj.miniweb.repository;
 
 import com.jcj.miniweb.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import java.util.List;
  * @Description：数据仓库类：公司
  */
 @Repository
-public interface CompanyRepo extends JpaRepository<Company,Long>
+public interface CompanyRepo extends JpaRepository<Company,Long>, JpaSpecificationExecutor
 {
 	//原生sql语句查询
 	@Query(value="select * from company where cname=?1",nativeQuery = true)

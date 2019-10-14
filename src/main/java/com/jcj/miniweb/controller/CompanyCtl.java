@@ -137,16 +137,23 @@ public class CompanyCtl
     companyService.delete(uuid);
   }
 
+  //指定客户列表页面,由于默认不能直接访问templates文件夹下的页面，所以通过跳转的方式进行访问
+  @RequestMapping(value = "/listcompanyhtml")
+  public String listcompanyhtml()
+  {
+    return "/ListCompany";//对应的是页面文件("templates"文件夹下的ListCompany.html文件)
+  }
+
 
   @PostMapping("/findAllSimplePage")
   @ResponseBody
   public String findAllSimplePage(@RequestBody Map<String,Object> reqMap)
   {
     /**
-    *@Author 江成军
-    *@Description 简单分页查询
-    *@Date 2019/09/29 16:35
-    **/
+     *@Author 江成军
+     *@Description 简单分页查询
+     *@Date 2019/09/29 16:35
+     **/
     //固定不变的两个分页参数
     int page=0;
     if(reqMap.get("page").toString()!=null){page= Integer.parseInt(reqMap.get("page").toString());}
@@ -164,21 +171,31 @@ public class CompanyCtl
     return result.toJSONString();
   }
 
-  //指定客户列表页面,由于默认不能直接访问templates文件夹下的页面，所以通过跳转的方式进行访问
-  @RequestMapping(value = "/listcompanyhtml")
-  public String listcompanyhtml()
+  @PostMapping("/queryDynamic")
+  @ResponseBody
+  public String queryDynamic(@RequestBody Map<String,Object> reqMap)
   {
-    return "/ListCompany";//对应的是页面文件("templates"文件夹下的ListCompany.html文件)
+    /**
+     *@Author 江成军
+     *@Description 简单分页查询
+     *@Date 2019/09/29 16:35
+     **/
+    //固定不变的两个分页参数
+    int page=0;
+    if(reqMap.get("page").toString()!=null){page= Integer.parseInt(reqMap.get("page").toString());}
+    int size=2;
+    if(reqMap.get("size").toString()!=null){size= Integer.parseInt(reqMap.get("size").toString());}
+
+    Sort sort=new Sort(Sort.Direction.DESC,"uuid");//按照UUID排序
+    Page<Company> pageinfo=companyService.queryDynamic(reqMap,PageRequest.of(page,size,sort));
+    List<Company> companies =pageinfo.getContent();
+    JSONObject result = new JSONObject();//maven中配置alibaba的fastjson依赖
+
+    //"rows"和"total"这两个属性是为前端列表插件"bootstrap-table"服务的
+    result.put("rows", companies);
+    result.put("total",pageinfo.getTotalElements());
+    return result.toJSONString();
   }
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -11,9 +11,10 @@ require(
 
                 //数据列表展示
                 $('#tb_Company').bootstrapTable({
-                    url: '/company/findAllSimplePage',         //请求后台的URL（*）
+                    url: '/company/queryDynamic',         //请求后台的URL（*）
                     method: 'post',                      //请求方式（*）post/get
                     striped: true,                      //是否显示行间隔色
+                    //toolbar: '#toolbar',                //工具按钮用哪个容器
                     cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
                     pagination: true,                   //是否显示分页（*）
                     sortable: true,                     //是否启用排序
@@ -38,10 +39,9 @@ require(
                         var temp = {
                             size: params.limit,//页面大小
                             page: (params.offset / params.limit),//页码
-                            //页面动态查询条件
-                            //realname:$("#realname").val(),
-                            //operetetype:$("#operetetype").val(),
-                            //operetedesc:$("#operetedesc").val()
+                            //页面动态查询条件（公司名称和法人姓名）
+                            cname:$("#cname").val(),
+                            legalpersonname:$("#legalpersonname").val()
                         };
                         return temp;
                     },
@@ -78,9 +78,12 @@ require(
                         field: 'totalincome',
                         title: '总收入'
 
-                    }, {
+                    },{
+                        field: 'legalpersonname',
+                        title: '法人姓名'
+                    },  {
                         field: 'legalpersonmobil',
-                        title: '法人'
+                        title: '法人手机'
                     }, {
                         field: 'businesslicense',
                         title: '印业执照'
@@ -88,6 +91,11 @@ require(
                         field: 'cbrief',
                         title: '企业简介'
                     }]
+                });
+
+                //多条件查询刷新
+                $("#btnSearch").click(function(){
+                    $("#tb_Company").bootstrapTable('refresh');
                 });
 
                 //region end 具体业务代码

@@ -186,7 +186,7 @@ public class CompanyCtl
     int size=2;
     if(reqMap.get("size").toString()!=null){size= Integer.parseInt(reqMap.get("size").toString());}
 
-    Sort sort=new Sort(Sort.Direction.DESC,"uuid");//按照UUID排序
+    Sort sort=new Sort(Sort.Direction.ASC,"uuid");//按照UUID排序
     Page<Company> pageinfo=companyService.queryDynamic(reqMap,PageRequest.of(page,size,sort));
     List<Company> companies =pageinfo.getContent();
     JSONObject result = new JSONObject();//maven中配置alibaba的fastjson依赖

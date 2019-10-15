@@ -9,6 +9,20 @@ require(
             function($){
                 //region start 具体业务代码
 
+                //绑定列表中各按钮的事件
+                window.operateEvents={
+                    'click .detail':function(e,value,row,index){
+                        alert("企业简介:"+row.cbrief);
+                    },
+                    'click .delete':function(e,value,row,index) {
+                        alert("当前UUID:"+row.uuid);
+
+                    },
+                    'click .modify':function(e,value,row,index){
+                        alert("当前行的下标:"+index);
+                    }
+                };
+
                 //数据列表展示
                 $('#tb_Company').bootstrapTable({
                     url: '/company/queryDynamic',         //请求后台的URL（*）
@@ -73,7 +87,14 @@ require(
                         title: '邮箱'
                     },{
                         field: 'cpersonnum',
-                        title: '员工人数'
+                        title: '员工人数',
+                        formatter: function indexFormatter(value, row, index){
+                            var newvalue="";
+                            if(value<=10){newvalue= '<span style="color:red;font-weight: bold">'+value+'</span>';}
+                            else if(value>10&&value<=100) {newvalue= '<span style="color:blue;font-weight: bold">'+value+'</span>';}
+                            else if(value>100) {newvalue= '<span style="color:green;font-weight: bold">'+value+'</span>';}
+                            return newvalue;
+                        }
                     }, {
                         field: 'totalincome',
                         title: '总收入'
@@ -90,6 +111,18 @@ require(
                     },{
                         field: 'cbrief',
                         title: '企业简介'
+                    },{
+                        field:'',
+                        title:'操 作',
+                        width:'160',
+                        events:operateEvents,
+                        formatter:function (value, row, index){
+                            var btnInfo='';
+                                btnInfo+='<button style="margin-right: 10px;padding: 2px" type="button" class="detail btn btn-outline btn-info btn-sm">详 情</button>';
+                                btnInfo+='<button style="margin-right: 10px;padding: 2px" type="button" class="delete btn btn-outline btn-danger btn-sm">删 除</button>';
+                                btnInfo+='<button style="margin-right: 10px;padding: 2px" type="button" class="modify btn btn-outline btn-warning btn-sm">修 改</button>';
+                            return btnInfo;
+                        }
                     }]
                 });
 

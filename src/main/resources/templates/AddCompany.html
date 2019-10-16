@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增公司</title>
+    <script type="text/javascript" data-main="/jscustom/AddCompany.js" src="/jslib/require2.3.6/require2.3.6.js"></script>
+</head>
+<body>
+<div id="wrapper wrapper-content">
+    <form role="form" id="FormUserInfo" method="post" style="margin-right: 20px;margin-left: 20px">
+        <table class="table table-hover" style="border-top: none">
+            <tbody>
+            <tr class="form-group">
+                <td class="text-right" style="width: 100px"><label for="cname"><span style="color: red">*</span>公司名称：</label></td>
+                <td><input type="text" name="cname" id="cname" class="form-control" placeholder="填写公司全称" style="width: 200px"></td>
+            </tr >
+            <tr class="form-group">
+                <td class="text-right"><label for="caddress"><span style="color: red">*</span>公司地址：</label></td>
+                <td><input type="password" name="caddress" id="caddress" class="form-control" placeholder="填写公司通讯地址" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="curl">企业网址：</label></td>
+                <td><input type="text" name="curl" id="curl" class="form-control" placeholder="如：www.baidu.com" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="cemail">企业邮箱：</label></td>
+                <td><input type="email" name="cemail" id="cemail" class="form-control" placeholder="如：service@163.com" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="cpersonnum">员工人数(个)：</label></td>
+                <td> <input type="text" name="cpersonnum" id="cpersonnum" class="form-control" placeholder="如：78" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="totalincome">企业年收入(万元)：</label></td>
+                <td><input type="text" name="totalincome" id="totalincome" class="form-control" placeholder="如:122.3" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="legalpersonname">法人姓名：</label></td>
+                <td><input type="text" name="legalpersonname" id="legalpersonname" class="form-control" placeholder="如：张三" style="width: 300px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="legalpersonmobil"><span style="color: red">*</span>法人手机号：</label></td>
+                <td><input type="text" name="legalpersonmobil" id="legalpersonmobil" class="form-control" placeholder="填写11位手机号" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="businesslicense"><span style="color: red">*</span>营业执照编号：</label></td>
+                <td><input type="text" name="businesslicense" id="businesslicense" class="form-control" placeholder="填写三合一之后的编号" style="width: 200px"></td>
+            </tr>
+            <tr class="form-group">
+                <td class="text-right"><label for="createtime">创建时间：</label></td>
+                <td><input type="date" name="createtime" id="createtime" class="form-control" placeholder="如:2012.07" style="width: 100px"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

@@ -145,7 +145,7 @@ require(
                         shade: 0.2,
                         maxmin: false,
                         area: ['61%', '90%'],
-                        content: '/AddCompany.html',
+                        content: '/company/addcompanyhtml',
                         end: function () {
                             $("#tb_Company").bootstrapTable('refresh');
                         }

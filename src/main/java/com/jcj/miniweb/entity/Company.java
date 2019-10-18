@@ -36,7 +36,7 @@ public class Company {
   @Column
   private int cpersonnum;
 
-  @Column(columnDefinition = "double(10,4) default '0.00'")
+  @Column(columnDefinition = "double(20,4) default '0.00'")
   private float totalincome;
 
   @Column(length = 10)

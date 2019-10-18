@@ -17,7 +17,7 @@
             </tr >
             <tr class="form-group">
                 <td class="text-right"><label for="caddress"><span style="color: red">*</span>公司地址：</label></td>
-                <td><input type="password" name="caddress" id="caddress" class="form-control" placeholder="填写公司通讯地址" style="width: 200px"></td>
+                <td><input type="text" name="caddress" id="caddress" class="form-control" placeholder="填写公司通讯地址" style="width: 200px"></td>
             </tr>
             <tr class="form-group">
                 <td class="text-right"><label for="curl">企业网址：</label></td>
@@ -48,11 +48,19 @@
                 <td><input type="text" name="businesslicense" id="businesslicense" class="form-control" placeholder="填写三合一之后的编号" style="width: 200px"></td>
             </tr>
             <tr class="form-group">
+                <td class="text-right"><label for="cbrief"><span style="color: red">*</span>企业简介：</label></td>
+                <td><input type="text" name="cbrief" id="cbrief" class="form-control" placeholder="填写企业的简介" style="width: 400px"></td>
+            </tr>
+            <tr class="form-group">
                 <td class="text-right"><label for="createtime">创建时间：</label></td>
                 <td><input type="date" name="createtime" id="createtime" class="form-control" placeholder="如:2012.07" style="width: 140px"></td>
             </tr>
             </tbody>
         </table>
+        <div class="form-inline text-center" style="margin-bottom: 6px;padding-top: 10px">
+            <button id="btn_Save" type="button" class="btn btn-primary btn-md" > 提 交 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="reset" class="btn btn-primary btn-md"> 重 置 </button>
+        </div>
     </form>
 </div>
 </body>

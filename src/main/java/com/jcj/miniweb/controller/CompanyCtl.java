@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @Author： 江成军
@@ -52,6 +53,7 @@ public class CompanyCtl
   public void save(Company company)
   {
     //保存或更新数据（利用JpaRepository已封装的方法）
+    company.setUuid(UUID.randomUUID().toString().replace("-", ""));
     companyService.save(company);
   }
 

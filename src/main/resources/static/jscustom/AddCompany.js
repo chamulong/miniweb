@@ -5,7 +5,7 @@ require(
     ['/jscustom/GlobleConfig.js'],
     function(){
         requirejs(
-            ['jquery','bootstrap','jqueryform','validator','layer'],
+            ['jquery','bootstrap','jqueryform','validator'],
             function($){
                 //*****自定义功能块 region*****
 
@@ -63,12 +63,13 @@ require(
                         {
                             var options = {
                                 complete: function (data) {
-                                    alert("客户添加成功")
+                                    alert("客户添加成功");
+                                    var mylay = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(mylay);//关闭当前窗口页
                                 },
                                 url: '/company/save',
                                 dataType: 'json',
-                                resetForm: true,  // 成功提交后，重置所有的表单元素的值
-                                timeout: 5000
+                                resetForm: true  // 成功提交后，重置所有的表单元素的值
                             };
                             $('#FormCompany').ajaxSubmit(options);
                         }

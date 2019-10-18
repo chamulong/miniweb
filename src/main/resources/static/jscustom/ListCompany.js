@@ -5,9 +5,13 @@ require(
     ['/jscustom/GlobleConfig.js'],
     function(){
         requirejs(
-            ['jquery','bootstrap','bootstraptable','bootstraptableCN'],
+            ['jquery','bootstrap','bootstraptable','bootstraptableCN','layer'],
             function($){
                 //region start 具体业务代码
+
+                layer.config({
+                    path:'/jslib/layer-v3.1.1/layer/'
+                });
 
                 //绑定列表中各按钮的事件
                 window.operateEvents={
@@ -129,6 +133,23 @@ require(
                 //多条件查询刷新
                 $("#btnSearch").click(function(){
                     $("#tb_Company").bootstrapTable('refresh');
+                });
+
+                //弹出新增客户窗口
+                $("#btn_add").on('click',function(){
+                    layer.open({
+                        type: 2,
+                        skin: 'layui-layer-molv',
+                        title: '新增客户',
+                        shadeClose: true,
+                        shade: 0.2,
+                        maxmin: false,
+                        area: ['61%', '90%'],
+                        content: '/AddCompany.html',
+                        end: function () {
+                            $("#tb_Company").bootstrapTable('refresh');
+                        }
+                    });
                 });
 
                 //region end 具体业务代码

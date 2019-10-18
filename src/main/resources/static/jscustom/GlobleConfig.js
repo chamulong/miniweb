@@ -11,10 +11,10 @@ require.config({
         bootstraptable:['/jslib/Hplus-v.4.1.0/js/plugins/bootstrap-table/bootstrap-table.min'],
         bootstraptableCN:['/jslib/Hplus-v.4.1.0/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN'],
         layer:['/jslib/layer-v3.1.1/layer/layer'],
-        jqueryform:['/jslib/Hplus-v.4.1.0/js/jquery.form.min'],
+        jqueryform:['/jslib/jquery.form/jquery.form.min'],
         jqueryupload:['/jslib/jQuery.upload/jQuery.upload.min'],
         ztree:['/jslib/zTree_v3/js/jquery.ztree.all'],
-        validator:['/jslib/bootstrapvalidator.0.5.3/js/bootstrapValidator.min']
+        validator:['https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min']
     },
     map:{
         '*':{
@@ -58,7 +58,7 @@ require.config({
             deps:['jquery','css!/jslib/zTree_v3/css/zTreeStyle/img/zTreeStyle.css']
         },
         validator:{
-            deps:['jquery','bootstrap','css!/jslib/bootstrapvalidator.0.5.3/bootstrapValidator.css']
+            deps:['jquery','bootstrap','css!https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css']
         }
     }
 })

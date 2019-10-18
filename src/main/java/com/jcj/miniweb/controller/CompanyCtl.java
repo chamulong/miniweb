@@ -144,7 +144,6 @@ public class CompanyCtl
     return "/ListCompany";//对应的是页面文件("templates"文件夹下的ListCompany.html文件)
   }
 
-
   @PostMapping("/findAllSimplePage")
   @ResponseBody
   public String findAllSimplePage(@RequestBody Map<String,Object> reqMap)

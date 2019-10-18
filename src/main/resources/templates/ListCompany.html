@@ -6,24 +6,36 @@
     <script type="text/javascript" data-main="/jscustom/ListCompany.js" src="/jslib/require2.3.6/require2.3.6.js"></script>
 </head>
 <body>
-    <!--查询条件-->
-    <div class="row" style="margin-bottom: 5px">
-        <div CLASS="col-md-12 text-right">
-            <form class="form-inline">
-                <label for="cname">公司名称:</label>
-                <input type="text" class="form-control input-sm" id="cname" name="cname" placeholder="如：华为" style="width: 100px;margin-right: 15px">
-
-                <label for="legalpersonname">法人:</label>
-                <input type="text" class="form-control input-sm" id="legalpersonname" name="legalpersonname" placeholder="如：张三" style="width: 120px;margin-right: 15px">
-
-                <button type="button" class="btn btn-sm" id="btnSearch">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查 询
+    <div class="wrapper wrapper-content animated fadeInRight" style="padding: 8px" >
+        <!--新增按钮-->
+        <div class="row" style="margin-bottom: 5px">
+            <div class="col-md-4">
+                <button style="margin-right: 10px" id="btn_add" type="button" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-plus"></span>新增
                 </button>
-            </form>
-        </div>
-    </div>
+                <button style="margin-right: 10px" id="btn_delete" type="button" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span>删除
+                </button>
+            </div>
 
-    <!--列表展示-->
-    <table id="tb_Company" style="word-break:break-all;"> </table>
+            <!--查询条件-->
+            <div CLASS="col-md-8 text-right">
+                <form class="form-inline">
+                    <label for="cname">公司名称:</label>
+                    <input type="text" class="form-control input-sm" id="cname" name="cname" placeholder="如：华为" style="width: 100px;margin-right: 15px">
+
+                    <label for="legalpersonname">法人:</label>
+                    <input type="text" class="form-control input-sm" id="legalpersonname" name="legalpersonname" placeholder="如：张三" style="width: 120px;margin-right: 15px">
+
+                    <button type="button" class="btn btn-sm" id="btnSearch">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查 询
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!--列表展示-->
+        <table id="tb_Company" style="word-break:break-all;"> </table>
+    </div>
 </body>
 </html>

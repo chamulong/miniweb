@@ -2,17 +2,16 @@
  * 添加客户信息
  ***********/
 require(
-    ['/js/GlobleConfig.js'],
+    ['/jscustom/GlobleConfig.js'],
     function(){
         requirejs(
-            ['jquery','bootstrap','jqueryform','layer','validator'],
+            ['jquery','bootstrap','jqueryform','validator','layer'],
             function($){
                 //*****自定义功能块 region*****
 
                 //利用bootstrapvalidator进行表单验证
                 $(document).ready(function(){
-                    $('#FormCompany')
-                        .bootstrapValidator({
+                    $('#FormCompany').bootstrapValidator({
                             feedbackIcons: {
                                 valid: 'glyphicon glyphicon-ok',
                                 invalid: 'glyphicon glyphicon-remove',

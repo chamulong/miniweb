@@ -205,5 +205,14 @@ public class CompanyCtl
     return result.toJSONString();
   }
 
+  @RequestMapping("/deleteByUuid")
+  @ResponseBody
+  public String deleteByUuid(String uuid)
+  {
+    //删除记录
+    companyService.delete(uuid);
+    return "OK";
+  }
+
 
 }

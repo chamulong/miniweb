@@ -16,14 +16,31 @@ require(
                 //绑定列表中各按钮的事件
                 window.operateEvents={
                     'click .detail':function(e,value,row,index){
-                        alert("企业简介:"+row.cbrief);
+                        layer.alert("企业简介:"+row.cbrief, {icon: 1});
                     },
                     'click .delete':function(e,value,row,index) {
-                        alert("当前UUID:"+row.uuid);
+                        //删除记录
+                        layer.confirm('是否删除记录？',{
+                            icon: 0,
+                            btn:['取 消','确 定']
+                        },function(){
+                            layer.closeAll();
+                        },function(){
+                            $.ajax({
+                                url:'/company/deleteByUuid',
+                                type:'post',
+                                data:{uuid:row.uuid},
+                                async:true,//true为异步，false为同步
+                                complete:function(){
+                                    $("#tb_Company").bootstrapTable('refresh');
+                                }
+
+                            });
+                        });
 
                     },
                     'click .modify':function(e,value,row,index){
-                        alert("当前行的下标:"+index);
+                        layer.alert("当前行的下标:"+index, {icon: 2});
                     }
                 };
 
@@ -151,6 +168,7 @@ require(
                         }
                     });
                 });
+
 
                 //region end 具体业务代码
             });

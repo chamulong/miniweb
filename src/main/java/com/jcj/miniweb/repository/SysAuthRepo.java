@@ -1,8 +1,7 @@
-package com.jcj.miniweb.security;
+package com.jcj.miniweb.repository;
 
+import com.jcj.miniweb.entity.SysAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 /**
  * 权限数据仓库接口

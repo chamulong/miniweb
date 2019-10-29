@@ -1,5 +1,10 @@
 package com.jcj.miniweb.security;
 
+import com.jcj.miniweb.entity.SysAuth;
+import com.jcj.miniweb.entity.SysUser;
+import com.jcj.miniweb.repository.SysAuthRepo;
+import com.jcj.miniweb.repository.SysRoleRepo;
+import com.jcj.miniweb.repository.SysUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,7 +38,7 @@ public class MyUserDetailsService implements UserDetailsService
     private HttpSession session;
 
 
-    //覆盖默认加载用户的方法，实现用户验证、创建session、获取对应的全部权限
+    //重写加载用户的方法，实现用户验证、创建session、获取对应的全部权限
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException
     {

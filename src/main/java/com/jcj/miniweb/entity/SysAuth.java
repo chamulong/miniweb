@@ -1,4 +1,4 @@
-package com.jcj.miniweb.security;
+package com.jcj.miniweb.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 

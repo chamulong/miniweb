@@ -1,5 +1,6 @@
-package com.jcj.miniweb.security;
+package com.jcj.miniweb.repository;
 
+import com.jcj.miniweb.entity.SysUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

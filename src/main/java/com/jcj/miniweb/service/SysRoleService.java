@@ -1,14 +1,15 @@
-package com.jcj.miniweb.security;
+package com.jcj.miniweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 账号服务层
+ * 角色服务层
  */
 @Service
-public class SysUserService
+public class SysRoleService
 {
     @Autowired
-    private SysUserRepo sysUserRepo;
+    private SysRoleService sysRoleService;
+
 }

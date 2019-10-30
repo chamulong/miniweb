@@ -1,15 +1,14 @@
 package com.jcj.miniweb.service;
 
-import com.jcj.miniweb.repository.SysAuthRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.jcj.miniweb.entity.SysAuth;
+
+import java.util.List;
 
 /**
- * 权限服务层
+ * 权限业务层接口
  */
-@Service
-public class SysAuthService
+public interface SysAuthService
 {
-    @Autowired
-    private SysAuthRepo sysAuthRepo;
+    //查找全部权限
+    List<SysAuth> findAll();
 }

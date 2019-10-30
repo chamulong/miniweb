@@ -1,15 +1,16 @@
 package com.jcj.miniweb.service;
 
-import com.jcj.miniweb.repository.SysUserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.jcj.miniweb.entity.SysUser;
 
 /**
- * 账号服务层
+ * 账号业务层接口
  */
-@Service
-public class SysUserService
+public interface SysUserService
 {
-    @Autowired
-    private SysUserRepo sysUserRepo;
+    //新添加账号
+    public void save(SysUser sysUser);
+
+    //根据账号/邮箱/手机号三者之一查询账号
+    SysUser findByUsernameOrUseremailOrUsermobile(String username,String email,String mobile);
+
 }

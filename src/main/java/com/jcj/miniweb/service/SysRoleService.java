@@ -1,15 +1,12 @@
 package com.jcj.miniweb.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.jcj.miniweb.entity.SysRole;
 
 /**
- * 角色服务层
+ * 角色业务层接口
  */
-@Service
-public class SysRoleService
+public interface SysRoleService
 {
-    @Autowired
-    private SysRoleService sysRoleService;
-
+    //根据uuid查找角色
+    public SysRole findByUuid(String uuid);
 }

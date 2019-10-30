@@ -3,14 +3,13 @@ package com.jcj.miniweb.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.jcj.miniweb.entity.Company;
 import com.jcj.miniweb.service.CompanyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +25,7 @@ import java.util.UUID;
 @RequestMapping("/company")
 public class CompanyCtl
 {
-  @Autowired
+  @Resource(name = "companyService")
   private CompanyService companyService;
 
   /*****************************************************

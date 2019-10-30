@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface SysRoleRepo extends JpaRepository<SysRole,Long>
 {
+    //根据uuid查找角色角色信息
+    SysRole findByUuid(String uuid);
 }

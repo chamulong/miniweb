@@ -36,7 +36,12 @@ public class SysUser implements UserDetails
     @Column(length = 100)
     private String usermobile;
 
-    @OneToOne(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
+    @Column(length = 32)
+    private String sysroleid;
+
+    //referencedColumnName对应的是关联表对应的列
+    @OneToOne
+    @JoinColumn(name="sysroleid",referencedColumnName="uuid",insertable = false, updatable = false)
     private SysRole sysRole;
 
     public String getUuid()
@@ -84,6 +89,10 @@ public class SysUser implements UserDetails
     public void setUsermobile(String usermobile) {
         this.usermobile = usermobile;
     }
+
+    public String getSysroleid(){return sysroleid;}
+
+    public void setSysroleid(String sysroleid){this.sysroleid = sysroleid;}
 
     public SysRole getSysRole()
     {

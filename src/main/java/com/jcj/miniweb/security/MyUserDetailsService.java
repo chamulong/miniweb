@@ -5,6 +5,9 @@ import com.jcj.miniweb.entity.SysUser;
 import com.jcj.miniweb.repository.SysAuthRepo;
 import com.jcj.miniweb.repository.SysRoleRepo;
 import com.jcj.miniweb.repository.SysUserRepo;
+import com.jcj.miniweb.service.SysAuthService;
+import com.jcj.miniweb.service.SysRoleService;
+import com.jcj.miniweb.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +28,14 @@ import java.util.List;
 @Service
 public class MyUserDetailsService implements UserDetailsService
 {
-    //注意以下注入的是三个数据库仓库接口，而不是相应的服务，是为了直接使用Jpa已封装好的数据库访问方法
-    @Autowired
-    private SysUserRepo sysUserRepo;
+    @Resource(name = "sysUserService")
+    private SysUserService sysUserService;
 
-    @Autowired
-    private SysAuthRepo sysAuthRepo;
+    @Resource(name = "sysRoleService")
+    private SysRoleService sysRoleService;
 
-    @Autowired
-    private SysRoleRepo sysRoleRepo;
+    @Resource(name="sysAuthService")
+    private SysAuthService sysAuthService;
 
     @Autowired
     private HttpSession session;
@@ -43,7 +46,7 @@ public class MyUserDetailsService implements UserDetailsService
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException
     {
         //根据账号名称、邮箱、手机号进行搜索（用的是JPA方式,参数是名称/邮箱/手机号之一），三者有其一，则验证通过
-        SysUser sysUser=sysUserRepo.findByUsernameOrUseremailOrUsermobile(s,s,s);
+        SysUser sysUser=sysUserService.findByUsernameOrUseremailOrUsermobile(s,s,s);
         if (sysUser==null)
         {
             throw new UsernameNotFoundException("用户名/密码错误");
@@ -56,7 +59,7 @@ public class MyUserDetailsService implements UserDetailsService
         List<SysAuth> sysAuths=new ArrayList<SysAuth>();
         if(sysUser.getSysRole().getName().equals("超级管理员"))//系统默认一个账号只对应
         {
-            List<SysAuth> listAuth=sysAuthRepo.findAll();
+            List<SysAuth> listAuth=sysAuthService.findAll();
             for (SysAuth sysAuth:listAuth)
             {
                 sysAuths.add(sysAuth);

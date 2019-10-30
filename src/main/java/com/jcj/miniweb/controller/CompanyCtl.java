@@ -26,7 +26,7 @@ import java.util.UUID;
 public class CompanyCtl
 {
   @Resource(name = "companyService")
-  private CompanyService companyService;
+  private CompanyService cs;
 
   /*****************************************************
    * 传统做法,非Restful设计风格
@@ -44,7 +44,7 @@ public class CompanyCtl
   public List<Company> findAll()
   {
     //查询全部数据（利用JpaRepository已封装的方法）
-    return companyService.findAll();
+    return cs.findAll();
   }
 
   @RequestMapping("/save")
@@ -53,7 +53,7 @@ public class CompanyCtl
   {
     //保存或更新数据（利用JpaRepository已封装的方法）
     company.setUuid(UUID.randomUUID().toString().replace("-", ""));
-    companyService.save(company);
+    cs.save(company);
   }
 
   @RequestMapping("/delete")
@@ -61,7 +61,7 @@ public class CompanyCtl
   public void delete(Company company)
   {
     //删除数据（利用JpaRepository已封装的方法）
-    companyService.delete(company);
+    cs.delete(company);
   }
 
   @RequestMapping("/findByNativeSQL")
@@ -69,7 +69,7 @@ public class CompanyCtl
   public List<Company> findByNativeSQL(@RequestParam String cname)
   {
     //查询全部数据（执行原生SQL查询语句）
-    return companyService.findByNativeSQL(cname);
+    return cs.findByNativeSQL(cname);
   }
 
   @RequestMapping("/updateByName")
@@ -77,7 +77,7 @@ public class CompanyCtl
   public void updateByName(@RequestParam String caddress,String cname)
   {
     //更新数据（执行原生SQL语句的更新）
-    companyService.updateByName(caddress,cname);
+    cs.updateByName(caddress,cname);
   }
 
   @RequestMapping("/findByCname")
@@ -85,7 +85,7 @@ public class CompanyCtl
   public Company findByCname(@RequestParam String cname)
   {
     //解析方法名的查询（Spring Data JPA框架）
-    return companyService.findByCname(cname);
+    return cs.findByCname(cname);
   }
 
   @RequestMapping("/findByCnameAndLegalpersonname")
@@ -93,7 +93,7 @@ public class CompanyCtl
   public Company findByCnameAndLegalpersonname(@RequestParam String cname,String legalpersonname)
   {
     //解析方法名的多条件查询（Spring Data JPA框架）
-    return companyService.findByCnameAndLegalpersonname(cname,legalpersonname);
+    return cs.findByCnameAndLegalpersonname(cname,legalpersonname);
   }
 
   /*****************************************************
@@ -104,7 +104,7 @@ public class CompanyCtl
   public List<Company> listCompany()
   {
     //GET方式，查询数据列表
-    return companyService.findAll();
+    return cs.findAll();
   }
 
   @RequestMapping(value="/company",method = RequestMethod.POST)
@@ -127,7 +127,7 @@ public class CompanyCtl
     Date d = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     company.setCreatetime(sdf.format(d));
-    companyService.save(company);
+    cs.save(company);
   }
 
   @RequestMapping(value="/company/{uuid}",method = RequestMethod.DELETE)
@@ -135,7 +135,7 @@ public class CompanyCtl
   public void deleteCompany(@PathVariable String uuid)
   {
     //POST方式，删除数据
-    companyService.delete(uuid);
+    cs.delete(uuid);
   }
 
   //指定客户列表页面,由于默认不能直接访问templates文件夹下的页面，所以通过跳转的方式进行访问
@@ -168,7 +168,7 @@ public class CompanyCtl
     if(reqMap.get("size").toString()!=null){size= Integer.parseInt(reqMap.get("size").toString());}
 
     Sort sort=new Sort(Sort.Direction.DESC,"uuid");//按照UUID排序
-    Page<Company> pageinfo=companyService.findAllSimplePage(PageRequest.of(page,size,sort));
+    Page<Company> pageinfo=cs.findAllSimplePage(PageRequest.of(page,size,sort));
     List<Company> companies =pageinfo.getContent();
     JSONObject result = new JSONObject();//maven中配置alibaba的fastjson依赖
 
@@ -194,7 +194,7 @@ public class CompanyCtl
     if(reqMap.get("size").toString()!=null){size= Integer.parseInt(reqMap.get("size").toString());}
 
     Sort sort=new Sort(Sort.Direction.ASC,"uuid");//按照UUID排序
-    Page<Company> pageinfo=companyService.queryDynamic(reqMap,PageRequest.of(page,size,sort));
+    Page<Company> pageinfo=cs.queryDynamic(reqMap,PageRequest.of(page,size,sort));
     List<Company> companies =pageinfo.getContent();
     JSONObject result = new JSONObject();//maven中配置alibaba的fastjson依赖
 
@@ -209,7 +209,7 @@ public class CompanyCtl
   public String deleteByUuid(String uuid)
   {
     //删除记录
-    companyService.delete(uuid);
+    cs.delete(uuid);
     return "OK";
   }
 

@@ -29,13 +29,13 @@ import java.util.List;
 public class MyUserDetailsService implements UserDetailsService
 {
     @Resource(name = "sysUserService")
-    private SysUserService sysUserService;
+    private SysUserService sus;
 
     @Resource(name = "sysRoleService")
-    private SysRoleService sysRoleService;
+    private SysRoleService srs;
 
     @Resource(name="sysAuthService")
-    private SysAuthService sysAuthService;
+    private SysAuthService sas;
 
     @Autowired
     private HttpSession session;
@@ -46,7 +46,7 @@ public class MyUserDetailsService implements UserDetailsService
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException
     {
         //根据账号名称、邮箱、手机号进行搜索（用的是JPA方式,参数是名称/邮箱/手机号之一），三者有其一，则验证通过
-        SysUser sysUser=sysUserService.findByUsernameOrUseremailOrUsermobile(s,s,s);
+        SysUser sysUser=sus.findByUsernameOrUseremailOrUsermobile(s,s,s);
         if (sysUser==null)
         {
             throw new UsernameNotFoundException("用户名/密码错误");
@@ -59,7 +59,7 @@ public class MyUserDetailsService implements UserDetailsService
         List<SysAuth> sysAuths=new ArrayList<SysAuth>();
         if(sysUser.getSysRole().getName().equals("超级管理员"))//系统默认一个账号只对应
         {
-            List<SysAuth> listAuth=sysAuthService.findAll();
+            List<SysAuth> listAuth=sas.findAll();
             for (SysAuth sysAuth:listAuth)
             {
                 sysAuths.add(sysAuth);

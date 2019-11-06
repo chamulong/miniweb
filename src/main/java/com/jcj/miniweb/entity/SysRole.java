@@ -20,7 +20,10 @@ public class SysRole
     private String uuid;
 
     @Column(length=30)
-    private  String name;
+    private  String rolename;
+
+    @Column(length=200)
+    private  String roledesc;
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<SysAuth> sysAuths;
@@ -35,15 +38,13 @@ public class SysRole
         this.uuid = uuid;
     }
 
-    public String getName()
-    {
-        return name;
-    }
+    public String getRolename(){return rolename;}
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
+    public void setRolename(String rolename){this.rolename = rolename;}
+
+    public String getRoledesc(){return roledesc;}
+
+    public void setRoledesc(String roledesc){this.roledesc = roledesc;}
 
     public List<SysAuth> getSysAuths()
     {

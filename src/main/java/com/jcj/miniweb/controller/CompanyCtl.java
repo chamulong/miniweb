@@ -52,7 +52,7 @@ public class CompanyCtl
   public void save(Company company)
   {
     //保存或更新数据（利用JpaRepository已封装的方法）
-    company.setUuid(UUID.randomUUID().toString().replace("-", ""));
+    //company.setUuid(UUID.randomUUID().toString().replace("-", ""));
     cs.save(company);
   }
 

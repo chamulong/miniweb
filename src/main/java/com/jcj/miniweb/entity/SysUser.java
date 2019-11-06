@@ -36,6 +36,9 @@ public class SysUser implements UserDetails
     @Column(length = 100)
     private String usermobile;
 
+    @Column(length = 30)
+    private String sysrolename;
+
     @Column(length = 32)
     private String sysroleid;
 
@@ -94,6 +97,10 @@ public class SysUser implements UserDetails
 
     public void setSysroleid(String sysroleid){this.sysroleid = sysroleid;}
 
+    public String getSysrolename(){return sysrolename;}
+
+    public void setSysrolename(String sysrolename){this.sysrolename = sysrolename;}
+
     public SysRole getSysRole()
     {
         return sysRole;
@@ -112,7 +119,7 @@ public class SysUser implements UserDetails
     {
         List<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();
         SysRole role=getSysRole();
-        auths.add(new SimpleGrantedAuthority(role.getName()));
+        auths.add(new SimpleGrantedAuthority(role.getRolename()));
 
         return auths;
     }

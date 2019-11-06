@@ -24,35 +24,35 @@ public interface CompanyService
 {
 
   //保存或更新数据
-  public void save(Company company);
+  void save(Company company);
 
 
   //删除数据
-  public void delete(Company company);
+  void delete(Company company);
 
   //基于主键删除数据
-  public void delete(String uuid);
+  void delete(String uuid);
 
   //查询全部数据
-  public List<Company> findAll();
+  List<Company> findAll();
 
   //执行原生SQL语句的查询
-  public List<Company> findByNativeSQL(String companyname);
+  List<Company> findByNativeSQL(String companyname);
 
   //执行原生SQL语句的更新
   @Transactional
-  public void updateByName(String companyaddress, String companyname);
+  void updateByName(String companyaddress, String companyname);
 
   //解析方法名的查询
-  public Company findByCname(String companyname);
+  Company findByCname(String companyname);
 
   //解析方法名的多条件查询
-  public Company findByCnameAndLegalpersonname(String companyname, String legalpersonname);
+  Company findByCnameAndLegalpersonname(String companyname, String legalpersonname);
 
   //简单分页查询
-  public Page<Company> findAllSimplePage(Pageable pageable);
+  Page<Company> findAllSimplePage(Pageable pageable);
 
   //带查询条件的分页查询
-  public Page<Company> queryDynamic(Map<String,Object> reqMap, Pageable pageable);
+  Page<Company> queryDynamic(Map<String,Object> reqMap, Pageable pageable);
 
 }

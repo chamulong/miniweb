@@ -19,7 +19,7 @@ public class SysAuth
     private String uuid;
 
     @Column(length = 200)
-    private String name;//权限名称（唯一），如‘系统管理’,‘系统管理_部门成员_增加’
+    private String fullname;//权限名称（唯一），如‘系统管理’,‘系统管理_部门成员_增加’
 
     @Column(length = 20)
     private String treename;//树形节点名称，如‘增加’
@@ -40,14 +40,14 @@ public class SysAuth
         this.uuid = uuid;
     }
 
-    public String getName()
+    public String getFullname()
     {
-        return name;
+        return fullname;
     }
 
-    public void setName(String name)
+    public void setFullname(String fullname)
     {
-        this.name = name;
+        this.fullname = fullname;
     }
 
     public String getTreename()

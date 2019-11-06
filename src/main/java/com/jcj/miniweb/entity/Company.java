@@ -2,10 +2,7 @@ package com.jcj.miniweb.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @Author: 江成军
@@ -16,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "company")
 public class Company {
   @Id
+  @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid")
   @Column(length = 32)
   private String uuid;

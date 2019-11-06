@@ -54,6 +54,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(false)//强制让之前登录的同一账号被挤出去
                 .expiredUrl("/login");
+        http.headers().contentTypeOptions().disable();//设置允许加载静态资源文件,如css
 
     }
 }

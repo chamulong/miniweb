@@ -55,7 +55,7 @@ require.config({
             deps:['jquery','css!/jslib/jQuery.upload/upload.css']
         },
         ztree:{
-            deps:['jquery','css!/jslib/zTree_v3/css/zTreeStyle/img/zTreeStyle.css']
+            deps:['jquery','css!/jslib/zTree_v3/css/zTreeStyle/zTreeStyle.css']
         },
         validator:{
             deps:['jquery','bootstrap','css!https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css']

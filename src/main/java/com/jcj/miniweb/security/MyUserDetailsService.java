@@ -57,7 +57,7 @@ public class MyUserDetailsService implements UserDetailsService
 
         //获取该用户对应角色的权限，如果角色是‘超级管理员’，则直接获取全部的权限
         List<SysAuth> sysAuths=new ArrayList<SysAuth>();
-        if(sysUser.getSysRole().getName().equals("超级管理员"))//系统默认一个账号只对应
+        if(sysUser.getSysRole().getRolename().equals("超级管理员"))//系统默认一个账号只对应
         {
             List<SysAuth> listAuth=sas.findAll();
             for (SysAuth sysAuth:listAuth)
@@ -77,9 +77,9 @@ public class MyUserDetailsService implements UserDetailsService
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         for (SysAuth sysAuth:sysAuths)
         {
-            if(sysAuth!=null&&sysAuth.getName()!=null)
+            if(sysAuth!=null&&sysAuth.getFullname()!=null)
             {
-                GrantedAuthority grantedAuthority=new SimpleGrantedAuthority(sysAuth.getName());
+                GrantedAuthority grantedAuthority=new SimpleGrantedAuthority(sysAuth.getFullname());
                 grantedAuthorities.add(grantedAuthority);
             }
         }

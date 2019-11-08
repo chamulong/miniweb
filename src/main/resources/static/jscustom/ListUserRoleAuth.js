@@ -14,6 +14,23 @@ require(
                     path:'/jslib/layer-v3.1.1/layer/'
                 });
 
+                //弹出新增员工窗口
+                $("#btn_addUser").bind('click',function(){
+                    layer.open({
+                        type: 2,
+                        skin: 'layui-layer-molv',
+                        title: '新增账号',
+                        shadeClose: true,
+                        shade: 0.2,
+                        maxmin: false,
+                        area: ['45%', '60%'],
+                        content: '/security/ridirectAddSysUserHtml',
+                        end: function () {
+                            $("#tb_SysUser").bootstrapTable('refresh');
+                        }
+                    });
+                });
+
                 //弹出新增角色层
                 $("#btn_addRole").bind('click',function(){
                     layer.open({
@@ -138,14 +155,8 @@ require(
                         async:true,//true为异步，false为同步
                         success:function(data){
                             var msg=data.msg;
-                            if(msg=="exist")
-                            {
-                                alert("节点名称已存在，请重新添加！")
-                            }
-                            else
-                            {
-                                alert("节点添加成功！");
-                            }
+                            if(msg=="exist"){alert("节点名称已存在，请重新添加！")}
+                            else{alert("节点添加成功！");}
 
                             $("#nowid").val("无");
                             $("#nowpid").val("无");
@@ -288,6 +299,10 @@ require(
                     showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
                     cardView: false,                    //是否显示详细视图
                     detailView: false,                   //是否显示父子表
+                    onClickRow:function (row,$element) {
+                        $('.info').removeClass('info');
+                        $($element).addClass('info');//点击改变颜色
+                    },
                     queryParams : function (params) {
                         //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
                         var temp = {

@@ -77,7 +77,7 @@
                 <div class="row" style="margin: 2px">
                     <div class="col-md-12" style="border-style:solid;border-width:1px;border-color:#DCDCDC;height: 200Px;padding: 10px">
                         <label th:each="sysRole,iterStat:${sysRoles}" style="margin-right: 20px;display:inline-block;color: #0d8ddb">
-                            <input type="radio" name="radiorole" value="" th:disabled="${sysRole.rolename=='超级管理员'}?true:false" th:attr="value=${sysRole.uuid}" th:text="${sysRole.rolename}">
+                            <input type="radio" name="radiorole" value="" th:disabled="${sysRole.rolename=='超级管理员'}?true:false" th:value="${sysRole.uuid}" th:text="${sysRole.rolename}">
                         </label>
                     </div>
                 </div>

@@ -13,6 +13,10 @@ public interface SysRoleRepo extends JpaRepository<SysRole,Long>
     //根据uuid查找角色角色信息
     SysRole findByUuid(String uuid);
 
+    //账号唯一性验证(如果已经存在，返回0，否则返回1)
+    @Query(value = "select count(*) from sysuser where username=?1",nativeQuery = true)
+    int validateUsername(String username);
+
     //根据uuid，删除角色
     @Modifying
     @Query(value = "delete from sysrole where uuid=?1",nativeQuery = true)

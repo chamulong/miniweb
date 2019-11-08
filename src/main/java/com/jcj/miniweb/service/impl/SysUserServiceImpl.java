@@ -1,6 +1,8 @@
 package com.jcj.miniweb.service.impl;
 
+import com.jcj.miniweb.entity.SysRole;
 import com.jcj.miniweb.entity.SysUser;
+import com.jcj.miniweb.repository.SysRoleRepo;
 import com.jcj.miniweb.repository.SysUserRepo;
 import com.jcj.miniweb.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class SysUserServiceImpl implements SysUserService
     @Autowired
     private SysUserRepo sysUserRepo;
 
+    @Autowired
+    private SysRoleRepo sysRoleRepo;
+
     //新添加用户
     @Override
     public void save(SysUser sysUser)
@@ -36,6 +41,12 @@ public class SysUserServiceImpl implements SysUserService
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         String hashPassword=passwordEncoder.encode(sysUser.getPassword());
         sysUser.setPassword(hashPassword);
+
+        //根据账号对应的角色id（sysroleid），得到角色信息
+        SysRole sysRole=sysRoleRepo.findByUuid(sysUser.getSysroleid());
+        sysUser.setSysrolename(sysRole.getRolename());
+        sysUser.setSysRole(sysRole);
+
         sysUserRepo.save(sysUser);
     }
 
@@ -63,6 +74,33 @@ public class SysUserServiceImpl implements SysUserService
             }
         };
         return this.sysUserRepo.findAll(querySpecifi,pageable);
+    }
+
+    //查询对应的账号名称是否存在（服务层用于唯一性验证）,如果用户已经存在返回false，否则返回true
+    @Override
+    public boolean validateUsername(String username)
+    {
+        int intCount=sysUserRepo.validateUsername(username);
+        if(intCount==0){return true;}
+        else{return false;}
+    }
+
+    //邮箱号唯一性验证(如果已经存在，返回false，否则返回true)
+    @Override
+    public boolean validateEmail(String email)
+    {
+        int intCount=sysUserRepo.validateEmail(email);
+        if(intCount==0){return true;}
+        else{return false;}
+    }
+
+    //手机号唯一性验证(如果已经存在，返回false，否则返回true)
+    @Override
+    public boolean validateMobile(String mobile)
+    {
+        int intCount=sysUserRepo.validateMobile(mobile);
+        if(intCount==0){return true;}
+        else{return false;}
     }
 
 

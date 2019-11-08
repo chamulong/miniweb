@@ -7,9 +7,11 @@ import com.jcj.miniweb.entity.Ztree;
 import com.jcj.miniweb.service.SysAuthService;
 import com.jcj.miniweb.service.SysRoleService;
 import com.jcj.miniweb.service.SysUserService;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -122,6 +124,65 @@ public class UserRoleAuthCtl
     public String editRole(@RequestParam String uuid,String authinfo)
     {
         sas.editRole(uuid,authinfo);
+        return "OK";
+    }
+
+    //查询全部的角色(填充添加用户中的下拉列表)
+    @RequestMapping("/findAllRoles")
+    @ResponseBody
+    public List<SysRole> findAllRoles()
+    {
+        List<SysRole> list=srs.findALL();
+        return list;
+    }
+
+    //用户名唯一性验证(如果已经存在，返回false，否则返回true；返回json数据，格式为{"valid",true})
+    @PostMapping("/validateUsername")
+    @ResponseBody
+    public String validateUsername(@RequestParam String username)
+    {
+        boolean blStatus=sus.validateUsername(username);
+        JSONObject result = new JSONObject();
+        result.put("valid", blStatus);
+        return result.toJSONString();
+    }
+
+    //邮箱号唯一性验证(如果已经存在，返回false，否则返回true；返回json数据，格式为{"valid",true})
+    @PostMapping("/validateEmail")
+    @ResponseBody
+    public String validateEmail(@RequestParam String email)
+    {
+        boolean blStatus=sus.validateEmail(email);
+        JSONObject result = new JSONObject();
+        result.put("valid", blStatus);
+        return result.toJSONString();
+    }
+
+    //手机号唯一性验证(如果已经存在，返回false，否则返回true；返回json数据，格式为{"valid",true})
+    @PostMapping("/validateMobile")
+    @ResponseBody
+    public String validateMobile(@RequestParam String mobile)
+    {
+        boolean blStatus=sus.validateMobile(mobile);
+        JSONObject result = new JSONObject();
+        result.put("valid", blStatus);
+        return result.toJSONString();
+    }
+
+    //添加系统账户，弹出窗口加载的添加系统账户页面跳转服务,弹出窗口加载的是跳转后的页面
+    @RequestMapping("/ridirectAddSysUserHtml")
+    public String ridirectAddSysUserHtml()
+    {
+        return "/AddSysUser";//返回AddSysUser.html页面
+    }
+
+
+    //保存系统账户
+    @RequestMapping("/saveSysUser")
+    @ResponseBody
+    public String saveSysUser(SysUser sysUser)
+    {
+        sus.save(sysUser);
         return "OK";
     }
 

@@ -1,5 +1,8 @@
 server:
   port: 80
+  servlet:
+    session:
+      timeout: 3600 #session超时时间3600秒（1小时）
 logging:
   level:
     root: WARN

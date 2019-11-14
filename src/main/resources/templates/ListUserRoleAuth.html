@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>账号角色权限管理页面</title>
@@ -47,7 +47,7 @@
                  <div class="row">
                      <div class="col-md-6 text-left"><h3>系统账号</h3></div>
                      <div class="col-md-6 text-right">
-                         <button  style="margin-right: 10px" id="btn_addUser" type="button" class="btn btn-outline btn-info btn-sm">
+                         <button sec:authorize="hasAuthority('系统管理_账号角色权限_新增账号')"  style="margin-right: 10px" id="btn_addUser" type="button" class="btn btn-outline btn-info btn-sm">
                              <span class="glyphicon glyphicon-plus"></span> 新增账号
                          </button>
                      </div>
@@ -62,13 +62,13 @@
                 <div class="row">
                     <div class="col-md-6 text-left"><h3>系统角色</h3></div>
                     <div class="col-md-6 text-right">
-                        <button  style="margin-right: 10px" id="btn_addRole" type="button" class="btn btn-outline btn-info btn-sm">
+                        <button sec:authorize="hasAuthority('系统管理_账号角色权限_新增角色')"  style="margin-right: 10px" id="btn_addRole" type="button" class="btn btn-outline btn-info btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> 新增角色
                         </button>
-                        <button  style="margin-right: 10px" id="btn_deleteRole" type="button" class="btn btn-outline btn-danger btn-sm">
+                        <button sec:authorize="hasAuthority('系统管理_账号角色权限_删除角色')"  style="margin-right: 10px" id="btn_deleteRole" type="button" class="btn btn-outline btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove"></span> 删除角色
                         </button>
-                        <button  style="margin-right: 10px" id="btn_assignRole" type="button" class="btn btn-outline btn-warning btn-sm">
+                        <button sec:authorize="hasAuthority('系统管理_账号角色权限_分配权限')"  style="margin-right: 10px" id="btn_assignRole" type="button" class="btn btn-outline btn-warning btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> 分配权限
                         </button>
 
@@ -94,13 +94,13 @@
                         <input  id="nowname" type="hidden" value="无">
                     </div>
                     <div class="col-md-9 text-right">
-                        <button  style="margin-right: 10px" id="btn_addMainAuth" type="button" class="btn btn-outline btn-warning btn-sm">
+                        <button sec:authorize="hasAuthority('系统管理_账号角色权限_新增一级权限')"  style="margin-right: 10px" id="btn_addMainAuth" type="button" class="btn btn-outline btn-warning btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> 新增一级权限
                         </button>
-                        <button  style="margin-right: 10px" id="btn_addAuth" type="button" class="btn btn-outline btn-info btn-sm">
+                        <button sec:authorize="hasAuthority('系统管理_账号角色权限_新增子权限')"  style="margin-right: 10px" id="btn_addAuth" type="button" class="btn btn-outline btn-info btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> 新增子权限
                         </button>
-                        <button  style="margin-right: 10px" id="btn_deleteAuth" type="button" class="btn btn-outline btn-danger btn-sm">
+                        <button sec:authorize="hasAuthority('系统管理_账号角色权限_删除权限')"  style="margin-right: 10px" id="btn_deleteAuth" type="button" class="btn btn-outline btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove"></span> 删除权限
                         </button>
                     </div>

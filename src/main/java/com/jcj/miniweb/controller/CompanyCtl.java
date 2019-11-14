@@ -6,6 +6,7 @@ import com.jcj.miniweb.service.CompanyService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -179,6 +180,7 @@ public class CompanyCtl
 
   @PostMapping("/queryDynamic")
   @ResponseBody
+  @PreAuthorize("hasAnyAuthority('客户管理_客户列表')")
   public String queryDynamic(@RequestBody Map<String,Object> reqMap)
   {
     /**

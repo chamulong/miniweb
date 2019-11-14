@@ -1,5 +1,8 @@
 server:
   port: 8080
+  servlet:
+    session:
+      timeout: 600 #session超时时间600秒
 logging:
   level:
     root: INFO #系统的日志级别

@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录</title>
     <script type="text/javascript" data-main="/jscustom/login.js" src="/jslib/require2.3.6/require2.3.6.js"></script>
+    <!--session过期，跳转到首页并跳出iframe-->
+    <script type="text/javascript">
+        if (window != top)
+            top.location.href = location.href;
+    </script>
 </head>
 
 <body class="gray-bg">
@@ -15,6 +20,8 @@
         <div>
             <div>
                 <h2>后台演示系统</h2>
+                <p th:if="${param.logout}" class="bg-info">用户注销成功</p>
+                <p th:if="${param.error}" class="bg-danger">用户名或密码有误，请重试</p>
             </div>
 
             <form class="m-t" role="form" th:action="@{/login}" method="post">

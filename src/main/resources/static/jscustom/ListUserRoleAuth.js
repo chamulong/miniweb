@@ -307,7 +307,7 @@ require(
                         //这里的键的名字和控制器的变量名必须一致，这边改动，控制器也需要改成一样的
                         var temp = {
                             size: params.limit,//页面大小
-                            page: (params.offset / params.limit),//页码
+                            page: (params.offset / params.limit)//页码
                         };
                         return temp;
                     },
@@ -357,7 +357,6 @@ require(
                 });
 
                 //******加载权限树 Start******
-                var arrModuleID=new Array();//用于记录全部树的id
 
                 function showAuthTree()
                 {

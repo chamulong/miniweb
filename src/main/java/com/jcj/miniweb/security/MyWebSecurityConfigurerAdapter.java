@@ -60,7 +60,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
         http.csrf().disable();// 关闭csrf防护
         http
                 .authorizeRequests()
-                    .antMatchers("/jscustom/**","/jslib/**").permitAll()     // 允许访问的静态资源，注意这里的根目录是指public/static/templates
+                    .antMatchers("/jscustom/**","/jslib/**","/druid/**").permitAll()     // 允许访问的静态资源，注意这里的根目录是指public/static/templates
                     .anyRequest().authenticated()
                     .and()
                 .headers().frameOptions().disable()//允许iframe嵌套（springSecurty使用X-Frame-Options防止网页被Frame，默认是deny，拒绝iframe嵌套）

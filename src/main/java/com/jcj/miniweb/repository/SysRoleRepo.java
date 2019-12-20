@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.UUID;
+
 /**
  * 角色数据仓库接口
  */
-public interface SysRoleRepo extends JpaRepository<SysRole,Long>
+public interface SysRoleRepo extends JpaRepository<SysRole, UUID>
 {
     //根据uuid查找角色角色信息
     SysRole findByUuid(String uuid);

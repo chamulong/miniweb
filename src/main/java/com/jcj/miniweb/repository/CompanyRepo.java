@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author： 江成军
@@ -15,7 +16,7 @@ import java.util.List;
  * @Description：数据仓库类：公司
  */
 @Repository
-public interface CompanyRepo extends JpaRepository<Company,Long>, JpaSpecificationExecutor
+public interface CompanyRepo extends JpaRepository<Company, UUID>, JpaSpecificationExecutor
 {
 	//原生sql语句查询
 	@Query(value="select * from company where cname=?1",nativeQuery = true)

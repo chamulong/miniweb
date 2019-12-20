@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 权限数据仓库接口
  */
-public interface SysAuthRepo extends JpaRepository<SysAuth,Long>
+public interface SysAuthRepo extends JpaRepository<SysAuth, UUID>
 {
     //根据节点id查找权限信息
     SysAuth findById(int id);
